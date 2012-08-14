@@ -1,0 +1,24 @@
+<?xml version="1.0"?> 
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
+    <script src="chrome://firedog/content/firedog.js" type="application/x-javascript"/> 
+
+	<commandset id="mainCommandSet">
+		<command id="cmd_fdStart"	oncommand="Firebug.FiredogModule.run(Firebug.currentContext)" />
+	</commandset>
+
+	<toolbar id="fbToolbar" align="center">
+		<hbox id="fbToolbarInner" flex="1" align="center">
+			<hbox id="fbFiredogStartBtn" insertafter="fbNetButtons" collapsed="true">
+
+				<toolbarbutton  id="fdStartBtn"  label="Start" 
+								tooltiptext="Start tracing" 
+								class="toolbar-text-button" 
+								command="cmd_fdStart" />
+			</hbox>
+
+		</hbox>
+	</toolbar>
+
+
+</overlay>

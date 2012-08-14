@@ -1,2 +1,2 @@
-content     firedog    chrome/firedog/
-overlay chrome://firebug/content/firebugOverlay.xul chrome://firedog/firedog/firedog.xul
+content     firedog	chrome/content/  xpcnativewrappers=no
+overlay		chrome://firebug/content/firebugOverlay.xul		chrome://firedog/content/firedog.xul

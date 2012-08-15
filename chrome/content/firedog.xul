@@ -5,20 +5,59 @@
 
 	<commandset id="mainCommandSet">
 		<command id="cmd_fdStart"	oncommand="Firebug.FiredogModule.run(Firebug.currentContext)" />
+		<command id="cmd_fdExclude" oncommand="Firebug.FiredogModule.exclude(Firebug.currentContext)" />
+		<command id="cmd_fdAbout" oncommand="Firebug.FiredogModule.about(Firebug.currentContext)" />
 	</commandset>
 
 	<toolbar id="fbToolbar" align="center">
 		<hbox id="fbToolbarInner" flex="1" align="center">
-			<hbox id="fbFiredogStartBtn" insertafter="fbNetButtons" collapsed="true">
-
+			<hbox id="fbFiredogBtns" insertafter="fbNetButtons" collapsed="true">
+				<toolbarseperator />
 				<toolbarbutton  id="fdStartBtn"  label="Start" 
 								tooltiptext="Start tracing" 
 								class="toolbar-text-button" 
 								command="cmd_fdStart" />
-			</hbox>
+				<!-- exclude file ui -->
+				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
 
+				<toolbarbutton id="fdExcludeFilesBtn" label="Exclude"
+								tooltiptext="Exclude function calls in those files"
+								type="menu"
+								tooltip="fdExcludeFilesMenu"
+								role="button" arial-haspopup="true" class="fbInternational"/>
+
+				<menupopup id="fdExcludeFilesMenu"	
+								oncommand="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)"
+								onpopupshowing="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)">
+					<!-- menu iteams -->
+					<menuitem id="fdFuncCallsFile1" lable="exclude file 1"
+							    tooltiptext="exclude function calls in this file"
+							    oncommand="Firebug.FiredogModule.excludeFile(event, this)"
+							    type="radio" autocheck="false"
+							    class="fbInternational" />
+					<menuitem id="fdFuncCallsFile2" label="exclude file 2"
+							   tooltiptext="exclude function calls in this file"
+							   oncommand="Firebug.FiredogModule.excludeFile(event, this)"
+							   type="radio" autocheck="true"
+							   class="fbInternational" />
+				</menupopup>
+
+				<!-- about dialog -->
+				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
+				<toolbarbutton id="fdAboutBtn" label="about"
+							  tooltiptext="about"
+							  class="toolbar-text-button"
+							  command="cmd_fdAbout" />
+
+				<!-- visit website -->
+				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
+				<toolbarbutton id="fdVisitHome" label="home"
+							  tooltiptext="home"
+							  class="toolbar-text-button"
+							  oncommand="Firebug.FiredogModule.visitWebsite('home')" />
+			</hbox>
 		</hbox>
 	</toolbar>
-
+	
 
 </overlay>

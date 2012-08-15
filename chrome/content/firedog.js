@@ -1,4 +1,6 @@
 
+//need to be wrapped as AMD module
+
 FBL.ns(function() { with (FBL) {
 
 	const Co	= Components;
@@ -14,9 +16,11 @@ FBL.ns(function() { with (FBL) {
 	function FiredogModule() {}
 	Firebug.FiredogModule = extend(Firebug.Module, 
 	{
-			this.panel = panel;
+
 			initialize: function(broswer, panel)
 			{
+				this.panel = panel;
+
 				var isShowFiredogPanel = panel && panel.name == panelName,
 					  btnStartSniffer = broswer.chrome.$('fbFiredogStartBtn');
 
@@ -58,7 +62,7 @@ FBL.ns(function() { with (FBL) {
 			//open url on a new tab
 			visitWebsite: function(url)
 			{
-				content.openNewTab(URLS[url]);
+				//window.openNewTab(URLS[url]);
 			},
 	});
 
@@ -66,7 +70,7 @@ FBL.ns(function() { with (FBL) {
 	 *	 extend fb panel
 	*/
     function FiredogPanel() {}
-    FiredogPanel.prototype = extend(Firebug.Panel,
+    FiredogPanel.prototype = extend(Firebug.ActivablePanel, //Firebug.Panel
 	{
 			name: panelName,
 			title: "Firedog",
@@ -105,5 +109,6 @@ FBL.ns(function() { with (FBL) {
 	//registe to firebug
 	Firebug.registerModule(FiredogModule);
     Firebug.registerPanel(FiredogPanel);
+
 
 }});

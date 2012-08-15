@@ -14,32 +14,34 @@
 			<hbox id="fbFiredogBtns" insertafter="fbNetButtons" collapsed="true">
 				<toolbarseperator />
 				<toolbarbutton  id="fdStartBtn"  label="Start" 
-								tooltiptext="Start tracing" 
-								class="toolbar-text-button" 
-								command="cmd_fdStart" />
+						tooltiptext="Start tracing" 
+						class="toolbar-text-button" 
+						command="cmd_fdStart" />
 				<!-- exclude file ui -->
 				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
 
 				<toolbarbutton id="fdExcludeFilesBtn" label="Exclude"
-								tooltiptext="Exclude function calls in those files"
-								type="menu"
-								tooltip="fdExcludeFilesMenu"
-								role="button" arial-haspopup="true" class="fbInternational"/>
+						tooltiptext="Exclude function calls in those files"
+						type="menu"
+						popup="fdExcludeFilesMenu"
+						tooltip="fdExcludeFilesMenu"
+						context="fdExcludeFilesMenu"
+						/>
 
-				<menupopup id="fdExcludeFilesMenu"	
-								oncommand="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)"
-								onpopupshowing="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)">
+				<menupopup id="fdExcludeFilesMenu" position="after_start"
+						oncommand="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)"
+						onpopupshowing="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)">
 					<!-- menu iteams -->
 					<menuitem id="fdFuncCallsFile1" lable="exclude file 1"
-							    tooltiptext="exclude function calls in this file"
-							    oncommand="Firebug.FiredogModule.excludeFile(event, this)"
-							    type="radio" autocheck="false"
-							    class="fbInternational" />
+						    tooltiptext="exclude function calls in this file"
+						    oncommand="Firebug.FiredogModule.excludeFile(event, this)"
+						    type="radio" autocheck="false"
+						    class="fbInternational" />
 					<menuitem id="fdFuncCallsFile2" label="exclude file 2"
-							   tooltiptext="exclude function calls in this file"
-							   oncommand="Firebug.FiredogModule.excludeFile(event, this)"
-							   type="radio" autocheck="true"
-							   class="fbInternational" />
+						   tooltiptext="exclude function calls in this file"
+						   oncommand="Firebug.FiredogModule.excludeFile(event, this)"
+						   type="radio" autocheck="true"
+						   class="fbInternational" />
 				</menupopup>
 
 				<!-- about dialog -->

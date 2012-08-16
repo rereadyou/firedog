@@ -24,24 +24,20 @@
 						tooltiptext="Exclude function calls in those files"
 						type="menu"
 						popup="fdExcludeFilesMenu"
-						tooltip="fdExcludeFilesMenu"
-						context="fdExcludeFilesMenu"
 						/>
 
 				<menupopup id="fdExcludeFilesMenu" position="after_start"
-						oncommand="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)"
-						onpopupshowing="return Firebug.FiredogModule.onExcludeShowing(Firebug.currentContext)">
+						oncommand=""
+						onpopupshowing="">
 					<!-- menu iteams -->
-					<menuitem id="fdFuncCallsFile1" lable="exclude file 1"
+					<menuitem  label="exclude file 1"
 						    tooltiptext="exclude function calls in this file"
 						    oncommand="Firebug.FiredogModule.excludeFile(event, this)"
-						    type="radio" autocheck="false"
-						    class="fbInternational" />
-					<menuitem id="fdFuncCallsFile2" label="exclude file 2"
+						    type="checkbox" autocheck="true" />
+					<menuitem  label="exclude file 2"
 						   tooltiptext="exclude function calls in this file"
 						   oncommand="Firebug.FiredogModule.excludeFile(event, this)"
-						   type="radio" autocheck="true"
-						   class="fbInternational" />
+						   type="checkbox" autocheck="true"  />
 				</menupopup>
 
 				<!-- about dialog -->

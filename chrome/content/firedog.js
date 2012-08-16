@@ -8,6 +8,7 @@ FBL.ns(function() { with (FBL) {
 	const Ci	= Co.interfaces;
 	const AM = AddonManager;
 	const panelName = "FiredogPanel";
+	const PREFS_DOMAIN = "extensions.firedog";
 	const URLS = {
 		home: 'http://www.rereadyou.cnblogs.cn',
 	};
@@ -64,6 +65,8 @@ FBL.ns(function() { with (FBL) {
 			{
 				//window.openNewTab(URLS[url]);
 			},
+
+
 	});
 
 	/* 
@@ -81,6 +84,31 @@ FBL.ns(function() { with (FBL) {
 			  Firebug.Panel.initialize.apply(this, arguments);
 			},
 			
+					//set options menu
+			getOptionsMenuItems: function(context)
+			{
+				return [	 
+						this.optionItem("Option1", "option1"),
+						'-',
+						this.optionItem("Option2", "option2")
+						
+					];
+			},
+			
+			optionItem: function(label, option)
+			{
+				var val = Firebug.getPref(PREFS_DOMAIN, option);
+
+				return {
+					label:		label,
+					nol10n:		true,
+					type:			"checkbox",
+					checked:	val,
+					command: bindFixed(Firebug.setPref, this, PREFS_DOMAIN, option, !val)
+				};
+			},
+
+
 			//show and hide function is the switcher for firedog toolbar defined by firebug
 			show: function(state)
 			{

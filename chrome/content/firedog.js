@@ -1,5 +1,6 @@
 
-//need to be wrapped as AMD module
+//need to be wrapped as AMD module, and panel and moudle extend statements should be seperated.
+//define([], function() {
 
 FBL.ns(function() { with (FBL) {
 
@@ -13,6 +14,10 @@ FBL.ns(function() { with (FBL) {
 		home: 'http://www.rereadyou.cnblogs.cn',
 	};
 	var panel = {};
+
+	//register string bundle for Firebug's $STR module(src firebug/extension/modules/locale.js)
+	Firebug.registerStringBundle("chrome://firedog/locale/firedog.properties");
+
 	//extend fb module
 	function FiredogModule() {}
 	Firebug.FiredogModule = extend(Firebug.Module, 
@@ -33,7 +38,7 @@ FBL.ns(function() { with (FBL) {
 			run: function(context)
 			{
 				var panel = context.getPanel('FiredogPanel',  true);
-				$('fdStartBtn').label = 'Stop';
+				$('fdStartBtn').label = $STR("firedog.startLabel"); // $STR: firebug string bundle object
 				panel.echo('barking');
 			},
 
@@ -63,6 +68,7 @@ FBL.ns(function() { with (FBL) {
 			//open url on a new tab
 			visitWebsite: function(url)
 			{
+				 FirebugChrome.window.open(URLS[url], "_blank");
 				//window.openNewTab(URLS[url]);
 			},
 
@@ -138,5 +144,7 @@ FBL.ns(function() { with (FBL) {
 	Firebug.registerModule(FiredogModule);
     Firebug.registerPanel(FiredogPanel);
 
+//	return FiredogPanel;
 
 }});
+//});

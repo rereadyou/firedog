@@ -1,0 +1,8 @@
+<!ENTITY		start.label			"Start" >
+<!ENTITY		start.tooltip		"Start tracing" >
+<!ENTITY		exclude.label		"Exclude" >
+<!ENTITY		exclude.tooltip		"Exclude function calls in those files" >
+<!ENTITY		about.label		"About" >
+<!ENTITY		about.tooltip		"about firedog" >
+<!ENTITY		home.label		"Home" >
+<!ENTITY		home.tooltip		"Visit firedog home">

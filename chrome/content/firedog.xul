@@ -1,4 +1,5 @@
 <?xml version="1.0"?> 
+<!DOCTYPE window SYSTEM "chrome://firedog/locale/firedog.dtd">
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
     <script src="chrome://firedog/content/firedog.js" type="application/x-javascript"/> 
@@ -13,15 +14,15 @@
 		<hbox id="fbToolbarInner" flex="1" align="center">
 			<hbox id="fbFiredogBtns" insertafter="fbNetButtons" collapsed="true">
 				<toolbarseperator />
-				<toolbarbutton  id="fdStartBtn"  label="Start" 
-						tooltiptext="Start tracing" 
+				<toolbarbutton  id="fdStartBtn"  label="&start.label;" 
+						tooltiptext="&start.tooltip;" 
 						class="toolbar-text-button" 
 						command="cmd_fdStart" />
 				<!-- exclude file ui -->
 				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
 
-				<toolbarbutton id="fdExcludeFilesBtn" label="Exclude"
-						tooltiptext="Exclude function calls in those files"
+				<toolbarbutton id="fdExcludeFilesBtn" label="&exclude.label;"
+						tooltiptext="&exclude.tooltip;"
 						type="menu"
 						popup="fdExcludeFilesMenu"
 						/>
@@ -38,19 +39,27 @@
 						   tooltiptext="exclude function calls in this file"
 						   oncommand="Firebug.FiredogModule.excludeFile(event, this)"
 						   type="checkbox" autocheck="true"  />
+					<!-- sys files -->
+					<menu label="System files">
+						<menupopup onpopupshowing="return ">
+						    <menuitem label="chrome"  type="checkbox"/>
+						    <menuitem label="resource" type="checkbox"/>
+						</menupopup>
+					</menu>
+					<menuseparator/>
 				</menupopup>
 
 				<!-- about dialog -->
 				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
-				<toolbarbutton id="fdAboutBtn" label="about"
-							  tooltiptext="about"
+				<toolbarbutton id="fdAboutBtn" label="&about.label;"
+							  tooltiptext="&about.tooltip;"
 							  class="toolbar-text-button"
 							  command="cmd_fdAbout" />
 
 				<!-- visit website -->
 				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
-				<toolbarbutton id="fdVisitHome" label="home"
-							  tooltiptext="home"
+				<toolbarbutton id="fdVisitHome" label="&home.label;"
+							  tooltiptext="&home.tooltip;"
 							  class="toolbar-text-button"
 							  oncommand="Firebug.FiredogModule.visitWebsite('home')" />
 			</hbox>

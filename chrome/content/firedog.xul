@@ -62,6 +62,13 @@
 							  tooltiptext="&home.tooltip;"
 							  class="toolbar-text-button"
 							  oncommand="Firebug.FiredogModule.visitWebsite('home')" />
+							 
+				<!-- visit website -->
+				<toolbarseparator class="fbPanelSpecificButtonsSeparator" />
+				<toolbarbutton id="fdVisitHome" label="&clear.label;"
+							  tooltiptext="&clear.tooltip;"
+							  class="toolbar-text-button"
+							  oncommand="Firebug.FiredogModule.clear(Firebug.currentContext)" />
 			</hbox>
 		</hbox>
 	</toolbar>

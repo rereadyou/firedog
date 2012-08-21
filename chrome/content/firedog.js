@@ -36,6 +36,7 @@ FBL.ns(function() { with (FBL) {
 			jsChain: {name: 'jsDog', fn: {file: 'jsDog', line: 0, args: ''}, parentNode: null, subfuncs: []},
 			callStack: [],//push and pop functions
 			jsChainCallFlow: '',
+			panel: {},
 
 			initialize: function(broswer, panel)
 			{
@@ -221,10 +222,10 @@ FBL.ns(function() { with (FBL) {
 					this.jsd = null;
 					//this.jsChainCallFlow = '';
 
-					var str = this.travel_chain(this.jsChain);
+					var str = this.travel_chain(this.jsChain, panel);
 					
 					//Application.console.log('str=== '+str);
-					panel.echo('str=== '+str);
+					//panel.echo(str);
 					this.jsChainCallFlow = str;
 					this.jsChain = {name: 'jsDog', fn: {file: 'jsDog', line: 0, args: ''}, parentNode: null, subfuncs: []};
 					this.callStack = [];
@@ -264,19 +265,20 @@ FBL.ns(function() { with (FBL) {
 				return filter;
 			},
 
-			travel_chain: function(root)
+			travel_chain: function(root, panel)
 			{
-				var str = root.name + '(' +root.fn.args + ')';
-				//var self = this;
-				//var selfCall = arguments.callee;
-				// here should check root type
-				//return selfCall;
-				//Application.console.log('in travel :'+root.subfuncs.length);
+				var funcDeclaration = root.name;
+				//var funcScriptName = root.fn.file;
+				var str = FiredogTemplate.FuncCallLineTag.append({root: root}, panel.panelNode, FiredogTemplate);
+				
+
 				var subfuncs = root.subfuncs;
+
 				for(var e in subfuncs)
 				{
-					//Application.console.log('sub ... '+e);
-					str += ', '+arguments.callee(subfuncs[e]);
+
+					//str += '<br> '+arguments.callee(subfuncs[e]);
+					arguments.callee(subfuncs[e], panel);
 				}
 				return str;
 			},
@@ -444,6 +446,19 @@ FBL.ns(function() { with (FBL) {
 			},
 
     });
+	
+	//all panel dom are from domplate
+	var FiredogTemplate = domplate(
+		{
+			FuncCallLineTag:
+				DIV({"class": 'funcCallLine'}, 
+					SPAN({"class": 'funcName'}, ' $root.name '),
+					A({"class":'scriptName scriptLink', _scriptName: '$root.fn.file', _lineNumber: '$root.fn.line' }, '$root.fn.file'),
+					SPAN({'class': 'scriptLine'}, " @line: $root.fn.line")
+				),
+		
+			
+		});
 
 
 	//registe to firebug

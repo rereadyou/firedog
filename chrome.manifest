@@ -1,4 +1,4 @@
-content     firedog	chrome/content/  xpcnativewrappers=no
-locale		firedog		en-US  chrome/locale/en-US/
+content		firedog							chrome/content/  xpcnativewrappers=no
+locale		firedog							en-US  chrome/locale/en-US/
 overlay		chrome://firebug/content/firebugOverlay.xul		chrome://firedog/content/firedog.xul
 

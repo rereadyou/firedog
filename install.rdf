@@ -12,13 +12,13 @@
             <Description>  
               <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>  
               <em:minVersion>1.5</em:minVersion>  
-              <em:maxVersion>14.0.*</em:maxVersion>  
+              <em:maxVersion>20.0.*</em:maxVersion>  
             </Description>  
-          </em:targetApplication> 
+        </em:targetApplication> 
 	  
-          <em:name>firedog</em:name>  
-          <em:description>A tool to trace js function calling tree</em:description>  
-          <em:creator>rereadyou</em:creator>  
-          <em:homepageURL>http://cnblogs.com/rereadyou/</em:homepageURL>  
-        </Description>  
+		<em:name>firedog</em:name>  
+		<em:description>A tool to trace js function calling tree</em:description>  
+		<em:creator>rereadyou</em:creator>  
+		<em:homepageURL>http://cnblogs.com/rereadyou/</em:homepageURL>  
+	</Description>  
 </RDF> 

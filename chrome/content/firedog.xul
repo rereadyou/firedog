@@ -1,7 +1,7 @@
 <?xml version="1.0"?> 
 <!DOCTYPE window SYSTEM "chrome://firedog/locale/firedog.dtd">
 
-<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script src="chrome://firedog/content/firedog.js" type="application/x-javascript"/> 
 
 	<commandset id="mainCommandSet">
@@ -30,15 +30,8 @@
 				<menupopup id="fdExcludeFilesMenu" position="after_start"
 						oncommand=""
 						onpopupshowing="">
-					<!-- menu iteams -->
-					<menuitem  label="exclude file 1"
-						    tooltiptext="exclude function calls in this file"
-						    oncommand="Firebug.FiredogModule.excludeFile(event, this)"
-						    type="checkbox" autocheck="true" />
-					<menuitem  label="exclude file 2"
-						   tooltiptext="exclude function calls in this file"
-						   oncommand="Firebug.FiredogModule.excludeFile(event, this)"
-						   type="checkbox" autocheck="true"  />
+					<!-- menu js files -->
+					
 					<!-- sys files -->
 					<menu label="System files">
 						<menupopup onpopupshowing="return ">

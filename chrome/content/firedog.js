@@ -362,9 +362,10 @@ FBL.ns(function() { with (FBL) {
 		},
 
 		//exclude function calls in file fileName
-		exclude: function(fileName)
+		exclude_file: function(context, event, obj)
 		{
-			$('fdExcludeBtn').label = "Exclude";
+			var panel = context.getPanel('FiredogPanel',  true);
+			panel.echo(event.target);
 
 		},
 
@@ -445,7 +446,7 @@ FBL.ns(function() { with (FBL) {
 				var item  = document.createElementNS(XUL_NS, "menuitem");
 				item.setAttribute("label", itemName);
 				item.setAttribute("tooltiptext", "exclude function calls in "+itemName);
-				item.setAttribute("oncommand", "Firebug.FiredogModule.excludeFile(event, this)");
+				item.setAttribute("oncommand", "Firebug.FiredogModule.exclude_file(Firebug.currentContext, event, this)");
 				item.setAttribute("type", "checkbox");
 				item.setAttribute("autocheck", "true");
 

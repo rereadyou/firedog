@@ -13,9 +13,9 @@ FBL.ns(function() { with (FBL) {
 	const funcRTN	= hook.TYPE_FUNCTION_RETURN; //3
 	const console	= Application.Console;
 
-	const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+	const XUL_NS 	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 	//open new ff tab
-	const wm		= Cc["@mozilla.org/appshell/window-mediator;1"]
+	const wm	= Cc["@mozilla.org/appshell/window-mediator;1"]
                 .getService(Ci.nsIWindowMediator);
 
 	const panelName = "FiredogPanel";
@@ -46,7 +46,7 @@ FBL.ns(function() { with (FBL) {
 			this.panel = panel;
 
 			var isShowFiredogPanel = panel && panel.name == panelName,
-				  btnStartSniffer = broswer.chrome.$('fbFiredogStartBtn');
+			    btnStartSniffer = broswer.chrome.$('fbFiredogStartBtn');
 
 			Firebug.Module.initialize.apply(this, arguments);
 
@@ -66,8 +66,7 @@ FBL.ns(function() { with (FBL) {
 
 			// javascript debugger service
 			this.jsd = Cc["@mozilla.org/js/jsd/debugger-service;1"]
-								 .getService(Ci.jsdIDebuggerService);
-			
+					   .getService(Ci.jsdIDebuggerService);
 
 			//check to stop
 			if(!this.tracing)

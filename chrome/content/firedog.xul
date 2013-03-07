@@ -6,7 +6,7 @@
 
 	<commandset id="mainCommandSet">
 		<command id="cmd_fdStart"	oncommand="Firebug.FiredogModule.run(Firebug.currentContext)" />
-		<command id="cmd_fdExclude" oncommand="Firebug.FiredogModule.exclude_file(Firebug.currentContext)" />
+		<command id="cmd_fdExclude" oncommand="Firebug.FiredogModule.exclude_file(Firebug.currentContext, event, this)" />
 		<command id="cmd_fdAbout" oncommand="Firebug.FiredogModule.about(Firebug.currentContext)" />
 	</commandset>
 

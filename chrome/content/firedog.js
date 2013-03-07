@@ -58,6 +58,9 @@ FBL.ns(function() { with (FBL) {
 			var panel = context.getPanel('FiredogPanel',  true);
 			//$('fdStartBtn').label = $STR("firedog.startLabel"); // $STR: firebug string bundle object
 			panel.clear();
+			//remove all js file names under exclude label
+			panel.remove_menuitem("fdExcludeFilesMenu");
+
 			panel.echo('Tracing... press stop to see result.');
 			$('fdStartBtn').label = $('fdStartBtn').label == $STR("firedog.startLabel")
 								? $STR("firedog.stopLabel")
@@ -364,7 +367,18 @@ FBL.ns(function() { with (FBL) {
 		exclude_file: function(context, event, obj)
 		{
 			var panel = context.getPanel('FiredogPanel',  true);
-			panel.echo(event.target);
+
+			if(obj.hasAttribute("checked"))
+			{
+				//hide js function calls from file (file name: "obj.label");
+				var fileName = obj.label;
+				var lines = content.document.getElementsByClassName(fileName);
+				for(var e in lines)
+				{
+					panel.echo(e);
+					e.parentElement.style.color = "#dddddd";
+				}
+			}
 
 		},
 
@@ -458,6 +472,16 @@ FBL.ns(function() { with (FBL) {
 				var menuitem = this.create_menuitem(itemName);
 				parent.appendChild(menuitem);
 
+			},
+
+			remove_menuitem: function(menuId, itemName)
+			{
+				var parent = document.getElementById(menuId);
+				
+				while(parent.hasChildNodes())
+				{
+					parent.removeChild(parent.lastChild);
+				}
 			},
 
 			//show and hide function is the switcher for firedog toolbar defined by firebug

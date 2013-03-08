@@ -295,7 +295,11 @@ FBL.ns(function() { with (FBL) {
 				}
 			}
 			
-			var str = FiredogTemplate.FuncCallLineTag.append({root: root}, panel.panelNode, FiredogTemplate);
+			//hide root jsDog
+			if(funcDeclaration !== "jsDog")
+			{
+				var str = FiredogTemplate.FuncCallLineTag.append({root: root}, panel.panelNode, FiredogTemplate);
+			}			
 			
 
 			var subfuncs = root.subfuncs;
@@ -364,21 +368,48 @@ FBL.ns(function() { with (FBL) {
 		},
 
 		//exclude function calls in file fileName
+		//note that fileName is some kind of http://127.0.0.1/index.php like
+		//thus cannot be simpliy set as 'a' className
 		exclude_file: function(context, event, obj)
 		{
 			var panel = context.getPanel('FiredogPanel',  true);
 
-			if(obj.hasAttribute("checked"))
+			var pdoc = panel.document;
+			var pnodes = panel.panelNode;
+			
+			var dimColor = "#dddddd";
+			//hide js function calls from file (file name: "obj.label");
+			var fileName = obj.label;
+			var lines = pdoc.getElementsByTagName('a');
+
+			for(var i in lines)
 			{
-				//hide js function calls from file (file name: "obj.label");
-				var fileName = obj.label;
-				var lines = content.document.getElementsByClassName(fileName);
-				for(var e in lines)
+				var e = lines[i];
+
+				if(e.innerHTML == fileName)
 				{
-					panel.echo(e);
-					e.parentElement.style.color = "#dddddd";
+					var div = e.parentElement;
+					if(obj.hasAttribute("checked"))
+					{
+						//as href line should be done by the sequence LoVe HAte
+						//e.style = ":link, :visited, :hover, :active {color:#dddddd;}";
+						e.style.color = dimColor
+						e.disabled = true;						
+						div.style.color = dimColor;
+					}
+					else
+					{
+						//e.style = ":link,:visited, :hover, :active {color:'';}";
+						e.style.color = "";
+						e.disabled = false;
+						div.style.color = "";
+					}
 				}
 			}
+		},//end of exlude_file function
+
+		include_file: function(context, event, obj)
+		{
 
 		},
 
@@ -484,7 +515,7 @@ FBL.ns(function() { with (FBL) {
 				}
 			},
 
-			//show and hide function is the switcher for firedog toolbar defined by firebug
+			//this function is the switcher for firedog toolbar defined by firebug
 			show: function(state)
 			{
 				Firebug.Panel.show.apply(this, arguments);
@@ -519,11 +550,10 @@ FBL.ns(function() { with (FBL) {
 		{
 			FuncCallLineTag:
 				DIV({"class": 'funcCallLine'}, 
-					SPAN({"class": 'funcName'}, ' $root.name '),
-					A({"class":'scriptName scriptLink', _scriptName: '$root.fn.file', _lineNumber: '$root.fn.line' }, '$root.fn.file'),
-					SPAN({'class': 'scriptLine'}, " @line: $root.fn.line")
+					SPAN({"class": 'funcName'}, ' $root.name() '),
+					A({"class":"scriptName scriptLink", _scriptName: "$root.fn.file", _lineNumber: "$root.fn.line" }, '$root.fn.file'),
+					SPAN({'class': 'scriptLine'}, "($root.fn.line)")
 				),
-		
 			
 		});
 

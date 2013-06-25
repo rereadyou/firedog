@@ -103,6 +103,7 @@ FBL.ns(function() { with (FBL) {
 				this.jsd.appendFilter(this.create_filter("file://*"));
 				this.jsd.appendFilter(this.create_filter("resource://*"));
 				this.jsd.appendFilter(this.create_filter("jar:file//*"));
+				this.jsd.appendFilter(this.create_filter("jar:file://*"));
 				this.jsd.appendFilter(this.create_filter("file:/*"));
 				
 
